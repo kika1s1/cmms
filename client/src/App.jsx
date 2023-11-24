@@ -4,7 +4,7 @@ import Profile from "./pages/Profile";
 import Signin from "./pages/Signin";
 import About from "./pages/About";
 import Header from "./components/Header";
-import SignUp from "./pages/SignUpt";
+import SignUp from "./pages/SignUp";
 function App() {
   return (
     <BrowserRouter>
