@@ -3,7 +3,8 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 
 // user defined module
-import userRoute from "./routes/user.js";
+import userRouter from "./routes/user.js";
+import authRouter from "./routes/auth.js";
 dotenv.config();
 const port = 3000;
 const app = express();
@@ -16,8 +17,12 @@ mongoose
   .catch((err) => {
     console.log(err.message);
   });
+// express middleware
+app.use(express.json());
 
-app.use("/api/user", userRoute);
+// user defined route middleware
+app.use("/api/user", userRouter);
+app.use("/api/auth", authRouter);
 app.listen(port, () => {
   console.log(`running @${port}`);
 });
