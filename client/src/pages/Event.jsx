@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
 import { Navigation } from "swiper/modules";
 import "swiper/css/bundle";
+import { useSelector } from "react-redux";
+import Contact from "../components/Contact";
 import {
   FaCalendar,
   FaShare,
@@ -18,7 +20,9 @@ export default function Event() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [contact, setContact] = useState(false);
   const params = useParams();
+  const { currentUser } = useSelector((state) => state.user);
   useEffect(() => {
     const fetchEvent = async () => {
       try {
@@ -40,7 +44,6 @@ export default function Event() {
     };
     fetchEvent();
   }, [params.eventId]);
-  console.log(loading);
 
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -173,6 +176,15 @@ export default function Event() {
                 </div>
               </li>
             </ul>
+            {currentUser && events.userRef !== currentUser._id && !contact && (
+              <button
+                onClick={() => setContact(true)}
+                className="bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3"
+              >
+                Contact Event Organizer
+              </button>
+            )}
+            {contact && <Contact event={events} />}
           </div>
         </div>
       )}

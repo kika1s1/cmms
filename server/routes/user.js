@@ -4,6 +4,7 @@ import {
   test,
   updateUser,
   getUserEvents,
+  getUser,
 } from "../controllers/user.js";
 import { verifyToken } from "../utils/verifyUser.js";
 
@@ -13,5 +14,5 @@ router.get("/test", test);
 router.post("/update/:id", verifyToken, updateUser);
 router.delete("/delete/:id", verifyToken, deleteUser);
 router.get("/events/:id", verifyToken, getUserEvents);
-
+router.get("/:id", verifyToken, getUser);
 export default router;
