@@ -50,3 +50,15 @@ export const updateEvent = async (req, res, next) => {
     next(error);
   }
 };
+
+export const getEvent = async (req, res, next) => {
+  try {
+    const event = await Event.findById(req.params.id);
+    if (!event) {
+      return next(errorHandler(404, "Event not found!"));
+    }
+    res.status(200).json(event);
+  } catch (error) {
+    next(error);
+  }
+};
