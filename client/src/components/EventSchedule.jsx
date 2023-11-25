@@ -5,7 +5,7 @@ import { FaCalendar } from "react-icons/fa";
 export default function EventSchedule({ event }) {
   return (
     <div className="bg-white shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px]">
-      <Link to={`/event/${event._id}`}>
+      <Link to={`/events/${event._id}`}>
         <img
           src={
             event.imageUrls[0] ||
