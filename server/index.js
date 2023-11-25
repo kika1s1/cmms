@@ -6,6 +6,8 @@ import dotenv from "dotenv";
 // user defined module
 import userRouter from "./routes/user.js";
 import authRouter from "./routes/auth.js";
+import eventRouter from "./routes/event.js";
+
 dotenv.config();
 const port = 3000;
 const app = express();
@@ -25,6 +27,7 @@ app.use(cookieParser());
 // user defined route middleware
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/event", eventRouter);
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   const message = err.message || "internal server error";
