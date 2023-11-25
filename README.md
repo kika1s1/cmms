@@ -2,82 +2,46 @@
 
 > Club Member Management System platform built with the MERN stack & Redux.
 
-<img src="./frontend/public/images/screens.png">
-
-This project is part of my [MERN Stack From Scratch | eCommerce Platform](https://www.traversymedia.com/mern-stack-from-scratch) course. It is a full-featured shopping cart with PayPal & credit/debit payments. See it in action at https://www.proshopdemo.dev
-
-This is version 2.0 of the app, which uses Redux Toolkit. The first version can be found [here](https://proshopdemo.dev)
+<img src="./client/public/images/screens.png">
 
 <!-- toc -->
-
-- [Features](#features)
-- [Usage](#usage)
-  - [Env Variables](#env-variables)
-  - [Install Dependencies (frontend & backend)](#install-dependencies-frontend--backend)
-  - [Run](#run)
-- [Build & Deploy](#build--deploy)
-  - [Seed Database](#seed-database)
-
-* [Bug Fixes, corrections and code FAQ](#bug-fixes-corrections-and-code-faq)
-  - [BUG: Warnings on ProfileScreen](#bug-warnings-on-profilescreen)
-  - [BUG: Changing an uncontrolled input to be controlled](#bug-changing-an-uncontrolled-input-to-be-controlled)
-  - [BUG: All file types are allowed when updating product images](#bug-all-file-types-are-allowed-when-updating-product-images)
-  - [BUG: Throwing error from productControllers will not give a custom error response](#bug-throwing-error-from-productcontrollers-will-not-give-a-custom-error-response)
-    - [Original code](#original-code)
-  - [BUG: Bad responses not handled in the frontend](#bug-bad-responses-not-handled-in-the-frontend)
-    - [Example from PlaceOrderScreen.jsx](#example-from-placeorderscreenjsx)
-  - [BUG: After switching users, our new user gets the previous users cart](#bug-after-switching-users-our-new-user-gets-the-previous-users-cart)
-  - [FAQ: How do I use Vite instead of CRA?](#faq-how-do-i-use-vite-instead-of-cra)
-    - [Setting up the proxy](#setting-up-the-proxy)
-    - [Setting up linting](#setting-up-linting)
-    - [Vite outputs the build to /dist](#vite-outputs-the-build-to-dist)
-    - [Vite has a different script to run the dev server](#vite-has-a-different-script-to-run-the-dev-server)
-    - [A final note:](#a-final-note)
-  * [License](#license)
 
 <!-- tocstop -->
 
 ## Features
 
-- Full featured shopping cart
-- Product reviews and ratings
-- Top products carousel
-- Product pagination
-- Product search feature
+- Full featured Authentication
+- Contact Event manager reviews and ratings
+- Top New Event carousel
+
+- Event search feature
 - User profile with orders
-- Admin product management
+- Admin Event management
 - Admin user management
-- Admin Order details page
-- Mark orders as delivered option
-- Checkout process (shipping, payment method, etc)
-- PayPal / credit card integration
-- Database seeder (products & users)
+- Admin Event details page
+- profile edit and delete
 
 ## Usage
 
 - Create a MongoDB database and obtain your `MongoDB URI` - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register)
-- Create a PayPal account and obtain your `Client ID` - [PayPal Developer](https://developer.paypal.com/)
 
 ### Env Variables
 
 Rename the `.env.example` file to `.env` and add the following
 
 ```
-NODE_ENV = development
+
 PORT = 5000
 MONGO_URI = your mongodb uri
 JWT_SECRET = 'abc123'
-PAYPAL_CLIENT_ID = your paypal client id
-PAGINATION_LIMIT = 8
+
 ```
 
-Change the JWT_SECRET and PAGINATION_LIMIT to what you want
-
-### Install Dependencies (frontend & backend)
+### Install Dependencies (client & server)
 
 ```
 npm install
-cd frontend
+cd client
 npm install
 ```
 
@@ -85,7 +49,7 @@ npm install
 
 ```
 
-# Run frontend (:3000) & backend (:5000)
+# Run backend (:3000) & client (:517)
 npm run dev
 
 # Run backend only
@@ -96,193 +60,14 @@ npm run server
 
 ```
 # Create frontend prod build
-cd frontend
+cd client
 npm run build
 ```
 
-### Seed Database
-
-You can use the following commands to seed the database with some sample users and products as well as destroy all data
-
-```
-# Import data
-npm run data:import
-
-# Destroy data
-npm run data:destroy
-```
-
-```
 Sample User Logins
 
 admin@email.com (Admin)
-123456
-
-john@email.com (Customer)
-123456
-
-jane@email.com (Customer)
-123456
-```
-
----
-
-# Bug Fixes, corrections and code FAQ
-
-The code here in the main branch has been updated since the course was published to fix bugs found by students of the course and answer common questions, if you are looking to compare your code to that from the course lessons then
-please refer to the [originalcoursecode](https://github.com/bradtraversy/proshop-v2/tree/originalCourseCode) branch of this repository.
-
-There are detailed notes in the comments that will hopefully help you understand
-and adopt the changes and corrections.
-An easy way of seeing all the changes and fixes is to use a note highlighter
-extension such as [This one for VSCode](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight) or [this one for Vim](https://github.com/folke/todo-comments.nvim) Where by you can easily list all the **NOTE:** and **FIX:** tags in the comments.
-
-### BUG: Warnings on ProfileScreen
-
-We see the following warning in the browser console..
-
-`<tD> cannot appear as a child of <tr>.`
-
-and
-
-`warning: Received 'true' for a non-boolean attribute table.`
-
-> Code changes can be seen in [ProfileScreen.jsx](./frontend/src/screens/ProfileScreen.jsx)
-
-### BUG: Changing an uncontrolled input to be controlled
-
-In our SearchBox input, it's possible that our `urlKeyword` is **undefined**, in
-which case our initial state will be **undefined** and we will have an
-uncontrolled input initially i.e. not bound to state.
-In the case of `urlKeyword` being **undefined** we can set state to an empty
-string.
-
-> Code changes can be seen in [SearchBox.jsx](./frontend/src/components/SearchBox.jsx)
-
-### BUG: All file types are allowed when updating product images
-
-When updating and uploading product images as an Admin user, all file types are allowed. We only want to upload image files. This is fixed by using a fileFilter function and sending back an appropriate error when the wrong file type is uploaded.
-
-You may see that our `checkFileType` function is declared but never actually
-used, this change fixes that. The function has been renamed to `fileFilter` and
-passed to the instance of [ multer ](https://github.com/expressjs/multer#filefilter)
-
-> Code changes can be seen in [uploadRoutes.js](./backend/routes/uploadRoutes.js)
-
-### BUG: Throwing error from productControllers will not give a custom error response
-
-In section **3 - Custom Error Middleware** we throw an error from our
-`getProductById` controller function, with a _custom_ message.
-However if we have a invalid **ObjectId** as `req.params.id` and use that to
-query our products in the database, Mongoose will throw an error before we
-reach the line of code where we throw our own error.
-
-#### Original code
-
-```js
-const getProductById = asyncHandler(async (req, res) => {
-  const product = await Product.findById(req.params.id);
-  if (product) {
-    return res.json(product);
-  }
-  // NOTE: the following will never run if we have an invalid ObjectId
-  res.status(404);
-  throw new Error("Resource not found");
-});
-```
-
-Instead what we can do is if we do want to check for an invalid ObjectId is use
-a built in method from Mongoose - [isValidObjectId](<https://mongoosejs.com/docs/api/mongoose.html#Mongoose.prototype.isValidObjectId()>)
-There are a number of places in the project where we may want to check we are
-getting a valid ObjectId, so we can extract this logic to it's own middleware
-and drop it in to any route handler that needs it.  
-This also removes the need to check for a cast error in our errorMiddleware and
-is a little more explicit in checking fo such an error.
-
-> Changes can be seen in [errorMiddleware.js](./backend/middleware/errorMiddleware.js), [productRoutes.js](./backend/routes/productRoutes.js), [productController.js]('./backend/controllers/productController.js') and [checkObjectId.js](./backend/middleware/checkObjectId.js)
-
-### BUG: Bad responses not handled in the frontend
-
-There are a few cases in our frontend where if we get a bad response from our
-API then we try and render the error object.
-This you cannot do in React - if you are seeing an error along the lines of
-**Objects are not valid as a React child** and the app breaks for you, then this
-is likely the fix you need.
-
-#### Example from PlaceOrderScreen.jsx
-
-```jsx
-<ListGroup.Item>
-  {error && <Message variant="danger">{error}</Message>}
-</ListGroup.Item>
-```
-
-In the above code we check for a error that we get from our [useMutation](https://redux-toolkit.js.org/rtk-query/usage/mutations)
-hook. This will be an object though which we cannot render in React, so here we
-need the message we sent back from our API server...
-
-```jsx
-<ListGroup.Item>
-  {error && <Message variant="danger">{error.data.message}</Message>}
-</ListGroup.Item>
-```
-
-The same is true for [handling errors from our RTK queries.](https://redux-toolkit.js.org/rtk-query/usage/error-handling)
-
-> Changes can be seen in:-
->
-> - [PlaceOrderScreen.jsx](./frontend/src/screens/PlaceOrderScreen.jsx)
-> - [OrderScreen.jsx](./frontend/src/screens/OrderScreen.jsx)
-> - [ProductEditScreen.jsx](./frontend/src/screens/admin/ProductEditScreen.jsx)
-> - [ProductListScreen.jsx](./frontend/src/screens/admin/ProductListScreen.jsx)
-
-### BUG: After switching users, our new user gets the previous users cart
-
-When our user logs out we clear **userInfo** and **expirationTime** from local
-storage but not the **cart**.  
-So when we log in with a different user, they _inherit_ the previous users cart
-and shipping information.
-
-The solution is to simply clear local storage entirely and so remove the
-**cart**, **userInfo** and **expirationTime**.
-
-> Changes can be seen in:-
->
-> - [authSlice.js](./frontend/src/slices/authSlice.js)
-> - [cartSlice.js](./frontend/src/slices/cartSlice.js)
-> - [Header.jsx](./frontend/src/components/Header.jsx)
-
-### FAQ: How do I use Vite instead of CRA?
-
-Ok so you're at **Section 1 - Starting The Frontend** in the course and you've
-heard cool things about [Vite](https://vitejs.dev/) and why you should use that
-instead of [Create React App](https://create-react-app.dev/) in 2023.
-
-There are a few differences you need to be aware of using Vite in place of CRA
-here in the course after [scaffolding out your Vite React app](https://github.com/vitejs/vite/tree/main/packages/create-vite#create-vite)
-
-#### Setting up the proxy
-
-Using CRA we have a `"proxy"` setting in our frontend/package.json to avoid
-breaking the browser [Same Origin Policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy) in development.
-In Vite we have to set up our proxy in our
-[vite.config.js](https://vitejs.dev/config/server-options.html#server-proxy).
-
-```js
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-
-export default defineConfig({
-  plugins: [react()],
-  server: {
-    // proxy requests prefixed '/api' and '/uploads'
-    proxy: {
-      "/api": "http://localhost:5000",
-      "/uploads": "http://localhost:5000",
-    },
-  },
-});
-```
+12345678
 
 #### Setting up linting
 
@@ -315,8 +100,7 @@ export default defineConfig({
   ],
   server: {
     proxy: {
-      "/api": "http://localhost:5000",
-      "/uploads": "http://localhost:5000",
+      "/api": "http://localhost:3000",
     },
   },
 });
@@ -354,18 +138,8 @@ module.exports = {
 Create React App by default ouputs the build to a **/build** directory and this is
 what we serve from our backend in production.  
 Vite by default outputs the build to to a **/dist** directory so we need to make
-some adjustments to our [backend/server.js](./backend/server.js)
+some adjustments to our [server/index.js](/server/index.js)
 Change...
-
-```js
-app.use(express.static(path.join(__dirname, "/frontend/build")));
-```
-
-to...
-
-```js
-app.use(express.static(path.join(__dirname, "/frontend/dist")));
-```
 
 #### Vite has a different script to run the dev server
 
@@ -376,13 +150,7 @@ using concurrently, then you will also need to change your root package.json
 scripts from...
 
 ```json
-    "client": "npm start --prefix frontend",
-```
-
-to...
-
-```json
-    "client": "npm run dev --prefix frontend",
+    "client": "npm start --prefix client",
 ```
 
 Or you can if you wish change the frontend/package.json scripts to use `npm
@@ -406,14 +174,7 @@ And that's it! You should be good to go with the course using Vite.
 
 The MIT License
 
-Copyright (c) 2023 Traversy Media https://traversymedia.com
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Copyright (c) 2023 tamirat kebede https://kika1s1.github.io/tamirat/
 
 The above copyright notice and this permission notice shall be included in
 all copies or substantial portions of the Software.
