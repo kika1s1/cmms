@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 
 // user defined module
@@ -19,6 +20,7 @@ mongoose
   });
 // express middleware
 app.use(express.json());
+app.use(cookieParser());
 
 // user defined route middleware
 app.use("/api/user", userRouter);
