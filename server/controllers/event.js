@@ -75,7 +75,7 @@ export const getEvents = async (req, res, next) => {
 
     const order = req.query.order || "desc";
 
-    const listings = await Listing.find({
+    const event = await Event.find({
       title: { $regex: searchTerm, $options: "i" },
       type,
     })
@@ -83,7 +83,7 @@ export const getEvents = async (req, res, next) => {
       .limit(limit)
       .skip(startIndex);
 
-    return res.status(200).json(listings);
+    return res.status(200).json(event);
   } catch (error) {
     next(error);
   }
