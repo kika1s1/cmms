@@ -2,7 +2,7 @@
 
 > Club Member Management System platform built with the MERN stack & Redux.
 
-<img src="./client/public/images/screens.png">
+<img src="./client/public/images/screen.png">
 
 <!-- toc -->
 
