@@ -5,16 +5,14 @@ export default function Search() {
   const [sidebardata, setSidebardata] = useState({
     searchTerm: "",
     type: "all",
-    parking: false,
-    furnished: false,
-    offer: false,
+
     sort: "created_at",
     order: "desc",
   });
 
   const [loading, setLoading] = useState(false);
-  const [listings, setListings] = useState([]);
-  console.log(listings);
+  const [events, setEvents] = useState([]);
+  console.log(events);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -30,16 +28,16 @@ export default function Search() {
       });
     }
 
-    const fetchListings = async () => {
+    const fetchEvents = async () => {
       setLoading(true);
       const searchQuery = urlParams.toString();
       const res = await fetch(`/api/event/get?${searchQuery}`);
       const data = await res.json();
-      setListings(data);
+      setEvents(data);
       setLoading(false);
     };
 
-    fetchListings();
+    fetchEvents();
   }, [location.search]);
 
   const handleChange = (e) => {
@@ -97,7 +95,7 @@ export default function Search() {
       </div>
       <div className="">
         <h1 className="text-3xl font-semibold border-b p-3 text-slate-700 mt-5">
-          Listing results:
+          Events results:
         </h1>
       </div>
     </div>
