@@ -2,7 +2,7 @@
 
 > Club Member Management System platform built with the MERN stack & Redux.
 
-<img src="./client/public/images/screen.png">
+<img src="https://github.com/kika1s1/cmms/blob/main/client/images/screen.png">
 
 <!-- toc -->
 
