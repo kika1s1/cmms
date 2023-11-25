@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Header from "./components/Header";
 import SignUp from "./pages/SignUp";
 import PrivateRoute from "./components/PrivateRoute";
+import CreateEvent from "./pages/CreateEvent";
 function App() {
   return (
     <BrowserRouter>
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
+          <Route path="/create-event" element={<CreateEvent />} />
         </Route>
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<SignUp />} />
