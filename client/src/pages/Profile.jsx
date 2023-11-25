@@ -140,6 +140,22 @@ export default function Profile() {
       setShowEventsError(true);
     }
   };
+  const handleEventDelete = async (eventId) => {
+    try {
+      const res = await fetch(`/api/event/delete/${eventId}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        console.log(data.message);
+        return;
+      }
+
+      setUserEvents((prev) => prev.filter((ev) => ev._id !== eventId));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
@@ -254,7 +270,12 @@ export default function Profile() {
               </Link>
 
               <div className="flex flex-col item-center">
-                <button className="text-red-700 uppercase">Delete</button>
+                <button
+                  onClick={() => handleEventDelete(ev._id)}
+                  className="text-red-700 uppercase"
+                >
+                  Delete
+                </button>
                 <button className="text-green-700 uppercase">Edit</button>
               </div>
             </div>
