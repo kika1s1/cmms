@@ -180,7 +180,7 @@ export default function CreateEvent() {
               </div>
             ))}
           <button className="p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80">
-            Create Listing
+            Create Event
           </button>
         </div>
       </form>
