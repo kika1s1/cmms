@@ -11,11 +11,11 @@
 ## Features
 
 - Full featured Authentication
-- Contact Event manager reviews and ratings
+- Contact Event manager
 - Top New Event carousel
 
 - Event search feature
-- User profile with orders
+
 - Admin Event management
 - Admin user management
 - Admin Event details page
