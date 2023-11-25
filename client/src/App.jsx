@@ -9,6 +9,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import CreateEvent from "./pages/CreateEvent";
 import UpdateEvent from "./pages/UpdateEvent";
 import Event from "./pages/Event";
+import Search from "./pages/Search";
 function App() {
   return (
     <BrowserRouter>
@@ -23,6 +24,7 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/about" element={<About />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/events/:eventId" element={<Event />} />
       </Routes>
     </BrowserRouter>
