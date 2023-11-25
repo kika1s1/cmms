@@ -6,6 +6,10 @@ const eventSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    userRef: {
+      type: String,
+      required: true,
+    },
     address: {
       type: String,
       required: true,

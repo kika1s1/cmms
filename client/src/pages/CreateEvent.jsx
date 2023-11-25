@@ -123,7 +123,7 @@ export default function CreateEvent() {
       if (data.success === false) {
         setError(data.message);
       }
-      navigate(`/event/${data._id}`);
+      navigate(`/events/${data._id}`);
     } catch (error) {
       setError(error.message);
       setLoading(false);
