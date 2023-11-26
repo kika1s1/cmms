@@ -15,7 +15,7 @@
 - Top New Event carousel
 - Create Event, Edit and Delete Event
 - Event search feature
-- User profile with orders
+
 - Admin Event management
 - Admin user management
 - Admin Event details page
