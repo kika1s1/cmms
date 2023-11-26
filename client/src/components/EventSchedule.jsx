@@ -29,21 +29,14 @@ export default function EventSchedule({ event }) {
           </p>
 
           <div className="text-slate-700 flex gap-4">
-            <a
-              href={event.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-500"
-            >
-              <div>
-                <span className="flex gap-2 justify-center text-green-500">
-                  <FaCalendar />
-                </span>
-                <span className="text-blue-400 block font-bold m-2">
-                  Attend Event
-                </span>
-              </div>
-            </a>
+            <div>
+              <span className="flex gap-2 justify-center text-green-500">
+                <FaCalendar />
+              </span>
+              <span className="text-blue-400 block font-bold m-2">
+                Attend Event
+              </span>
+            </div>
           </div>
         </div>
       </Link>

@@ -11,9 +11,9 @@
 ## Features
 
 - Full featured Authentication
-- Contact Event manager reviews and ratings
+- Contact Event manager
 - Top New Event carousel
-
+- Create Event, Edit and Delete Event
 - Event search feature
 - User profile with orders
 - Admin Event management

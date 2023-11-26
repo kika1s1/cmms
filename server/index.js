@@ -2,6 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
+// import { Path } from "mongoose";
+import path from "path";
 
 // user defined module
 import userRouter from "./routes/user.js";
@@ -39,6 +41,14 @@ app.use((err, req, res, next) => {
   //   next();
 });
 
+if (process.env.NODE_ENV === "production") {
+  const __dirname = path.resolve();
+  app.use(express.static(path.join(__dirname, "/client/dist")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"))
+  );
+}
 app.listen(port, () => {
   console.log(`running @${port}`);
 });

@@ -5,7 +5,6 @@ export default function Search() {
   const navigate = useNavigate();
   const [sidebardata, setSidebardata] = useState({
     searchTerm: "",
-    type: "all",
 
     sort: "created_at",
     order: "desc",
@@ -38,7 +37,7 @@ export default function Search() {
     };
 
     fetchEvents();
-  }, [location.search]);
+  }, []);
 
   const handleChange = (e) => {
     if (e.target.id === "sort_order") {
