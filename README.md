@@ -170,6 +170,10 @@ And that's it! You should be good to go with the course using Vite.
 
 ---
 
+## DEPloyed at
+
+`Project Link` - [Club management ](https://csec-astu.onrender.com/)
+
 ## License
 
 The MIT License
