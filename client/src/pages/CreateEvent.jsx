@@ -240,6 +240,13 @@ export default function CreateEvent() {
           {error && <p className="text-red-700 text-sm">{error}</p>}
         </div>
       </form>
+      <p className="text-lg p-5 m-auto">
+        Its crucial to ensure your availability at the scheduled time. Before
+        scheduling the event, its recommended to check your calendar or
+        availability to determine if you are free during that specific time
+        slot. This helps to avoid conflicts and ensures that you can attend the
+        event without any scheduling conflicts.
+      </p>
     </main>
   );
 }

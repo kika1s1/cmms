@@ -9,7 +9,9 @@ import PrivateRoute from "./components/PrivateRoute";
 import CreateEvent from "./pages/CreateEvent";
 import UpdateEvent from "./pages/UpdateEvent";
 import Event from "./pages/Event";
+import Footer from "./components/Footer";
 import Search from "./pages/Search";
+import Member from "./pages/Member";
 function App() {
   return (
     <BrowserRouter>
@@ -20,6 +22,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/create-event" element={<CreateEvent />} />
           <Route path="/update-event/:eventId" element={<UpdateEvent />} />
+          <Route path="/members" element={<Member />} />
         </Route>
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<SignUp />} />
@@ -27,6 +30,7 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/events/:eventId" element={<Event />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

@@ -1,22 +1,44 @@
-// Home.js
-
+import { useEffect, useState } from "react";
+import EventSchedule from "../components/EventSchedule";
 const Home = () => {
+  const [loading, setLoading] = useState(false);
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+
+    const fetchEvents = async () => {
+      setLoading(true);
+      const searchQuery = urlParams.toString();
+      const res = await fetch(`/api/event/get?${searchQuery}`);
+      const data = await res.json();
+      setEvents(data);
+      setLoading(false);
+    };
+
+    fetchEvents();
+  }, []);
+
   return (
-    <div className="bg-gray-100 min-h-screen">
-      <div className="container mx-auto py-12">
-        <h1 className="text-4xl font-bold text-center text-gray-800 mb-6">
-          Club Member Management
-        </h1>
-
-        <div className="max-w-lg mx-auto text-center mb-8">
-          <p className="text-lg text-gray-700">
-            Welcome to our Club Member Management System. Effortlessly organize
-            and keep track of your club members. Add new members, edit their
-            details, and stay organized.
+    <div className="flex-1 ">
+      <h1 className="text-3xl font-semibold text-center border-b p-3 text-slate-700 mt-5">
+        Top Events:
+      </h1>
+      <div className="p-12 flex flex-wrap gap-10  justify-center">
+        {!loading && events.length === 0 && (
+          <p className="text-xl text-slate-700">No listing found!</p>
+        )}
+        {loading && (
+          <p className="text-xl text-slate-700 text-center w-full">
+            Loading...
           </p>
-        </div>
+        )}
 
-        {/* You can add more sections, features, or links here */}
+        {!loading &&
+          events &&
+          events.map((event) => (
+            <EventSchedule key={event._id} event={event} />
+          ))}
       </div>
     </div>
   );

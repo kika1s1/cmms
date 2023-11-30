@@ -8,12 +8,12 @@ const Signup = () => {
   const navigate = useNavigate();
   const handleChangle = (e) => {
     // const { id, value } = e.target;
-    // console.log(e.target.value);
+    console.log(e.target.value);
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
     });
-    console.log(formData);
+    // console.log(formData);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,15 +49,37 @@ const Signup = () => {
         <input
           type="text"
           onChange={handleChangle}
-          id="username"
-          placeholder="username..."
+          id="fullName"
+          placeholder="Full Name..."
           className="border p-3 rounded-lg focus:outline-none"
         />
+        <input
+          type="text"
+          onChange={handleChangle}
+          id="username"
+          placeholder="User Name..."
+          className="border p-3 rounded-lg focus:outline-none"
+        />
+        <input
+          type="text"
+          onChange={handleChangle}
+          id="ugr"
+          placeholder="UGR..."
+          className="border p-3 rounded-lg focus:outline-none"
+        />
+        <input
+          type="text"
+          onChange={handleChangle}
+          id="department,"
+          placeholder="Department..."
+          className="border p-3 rounded-lg focus:outline-none"
+        />
+
         <input
           type="email"
           onChange={handleChangle}
           id="email"
-          placeholder="email..."
+          placeholder="Email..."
           className="border p-3 rounded-lg focus:outline-none"
         />
         <input

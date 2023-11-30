@@ -9,27 +9,39 @@ export const test = (req, res) => {
 };
 
 export const updateUser = async (req, res, next) => {
-  if (req.user.id !== req.params.id)
+  const id = req.user.id;
+  let isAdmin = false;
+
+  const user = await User.findById(id);
+  if (user.username === "admin") {
+    isAdmin = true;
+  }
+  if (req.user.id !== req.params.id) {
     return next(errorHandler(401, "You can only update your own account!"));
+  }
   try {
-    if (req.body.password) {
+    if (isAdmin) {
       req.body.password = bcryptjs.hashSync(req.body.password, 10);
     }
 
-    const updatedUser = await User.findByIdAndUpdate(
-      req.params.id,
+    const updatedUser = await User.findOneAndUpdate(
+      { ugr: req.body.ugr },
       {
         $set: {
+          fullName: req.body.fullname,
           username: req.body.username,
           email: req.body.email,
           password: req.body.password,
           avatar: req.body.avatar,
+          ugr: req.body.ugr,
+          department: req.body.department,
         },
       },
       { new: true }
     );
 
     const { password, ...rest } = updatedUser._doc;
+    // console.log(res);
 
     res.status(200).json(rest);
   } catch (error) {
@@ -38,9 +50,17 @@ export const updateUser = async (req, res, next) => {
 };
 
 export const deleteUser = async (req, res, next) => {
-  if (req.user.id !== req.params.id)
-    return next(errorHandler(401, "You can only delete your own account!"));
   try {
+    if (req.user.id !== req.params.id) {
+      const user = await User.findById(req.user.id);
+      if (user.username == admin) {
+        await User.findByIdAndDelete(req.params.id);
+        res.clearCookie("access_token");
+        res.status(200).json("User has been deleted!");
+      }
+      return next(errorHandler(401, "You can only delete your own account!"));
+    }
+
     await User.findByIdAndDelete(req.params.id);
     res.clearCookie("access_token");
     res.status(200).json("User has been deleted!");
@@ -50,15 +70,19 @@ export const deleteUser = async (req, res, next) => {
 };
 
 export const getUserEvents = async (req, res, next) => {
-  if (req.user.id === req.params.id) {
-    try {
+  try {
+    const user = await User.findById(req.user.id);
+    if (user.username == "admin") {
+      const events = await Event.find({});
+      return res.status(200).json(events);
+    } else if (req.user.id === req.params.id) {
       const events = await Event.find({ userRef: req.params.id });
       res.status(200).json(events);
-    } catch (error) {
-      next(error);
+    } else {
+      return next(errorHandler(401, "You can only view your own Event!"));
     }
-  } else {
-    return next(errorHandler(401, "You can only view your own Event!"));
+  } catch (error) {
+    next(error);
   }
 };
 
@@ -70,7 +94,19 @@ export const getUser = async (req, res, next) => {
 
     const { password: pass, ...rest } = user._doc;
 
-    res.status(200).json(rest);
+    res.status(200).json([rest]);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getUsers = async (req, res, next) => {
+  try {
+    const user = await User.find({});
+
+    // const { password: pass, ...rest } = user._doc;
+
+    res.status(200).json(user);
   } catch (error) {
     next(error);
   }

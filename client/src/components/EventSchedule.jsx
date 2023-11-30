@@ -2,15 +2,14 @@ import { Link } from "react-router-dom";
 import { MdLocationOn } from "react-icons/md";
 import { FaCalendar } from "react-icons/fa";
 
+import PropTypes from "prop-types";
+
 export default function EventSchedule({ event }) {
   return (
     <div className="bg-white shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px]">
       <Link to={`/events/${event._id}`}>
         <img
-          src={
-            event.imageUrls[0] ||
-            "https://53.fs1.hubspotusercontent-na1.net/hub/53/hubfs/Sales_Blog/real-estate-business-compressor.jpg?width=595&height=400&name=real-estate-business-compressor.jpg"
-          }
+          src={event.imageUrls[0]}
           alt="event cover"
           className="h-[320px] sm:h-[220px] w-full object-cover hover:scale-105 transition-scale duration-300"
         />
@@ -43,3 +42,13 @@ export default function EventSchedule({ event }) {
     </div>
   );
 }
+
+EventSchedule.propTypes = {
+  event: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    imageUrls: PropTypes.arrayOf(PropTypes.string).isRequired,
+    title: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+  }).isRequired,
+};

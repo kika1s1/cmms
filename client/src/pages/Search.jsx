@@ -30,6 +30,7 @@ export default function Search() {
     const fetchEvents = async () => {
       setLoading(true);
       const searchQuery = urlParams.toString();
+      console.log(searchQuery);
       const res = await fetch(`/api/event/get?${searchQuery}`);
       const data = await res.json();
       setEvents(data);
@@ -37,9 +38,12 @@ export default function Search() {
     };
 
     fetchEvents();
-  }, []);
+  }, [location.search]);
 
   const handleChange = (e) => {
+    if (e.target.id === "searchTerm") {
+      setSidebardata({ ...sidebardata, searchTerm: e.target.value });
+    }
     if (e.target.id === "sort_order") {
       const sort = e.target.value.split("_")[0] || "created_at";
 
@@ -56,6 +60,8 @@ export default function Search() {
     urlParams.set("sort", sidebardata.sort);
     urlParams.set("order", sidebardata.order);
     const searchQuery = urlParams.toString();
+    console.log(searchQuery);
+
     navigate(`/search?${searchQuery}`);
   };
   return (
@@ -64,13 +70,15 @@ export default function Search() {
         <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
           <div className="flex items-center gap-2">
             <label className="whitespace-nowrap font-semibold">
-              Search Term:
+              Search Event:
             </label>
             <input
               type="text"
               id="searchTerm"
-              placeholder="Search..."
+              placeholder="Search Event..."
               className="border rounded-lg p-3 w-full"
+              value={sidebardata.searchTerm}
+              onChange={handleChange}
             />
           </div>
           <div className="flex gap-2 flex-wrap items-center"></div>
@@ -83,8 +91,8 @@ export default function Search() {
               id="sort_order"
               className="border rounded-lg p-3"
             >
-              <option value="createdAt_desc">Latest Event</option>
-              <option value="createdAt_asc">Oldest Oldest</option>
+              <option value="createdAt_asc">New to Old</option>
+              <option value="createdAt_desc">Old to New</option>
             </select>
           </div>
           <button className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95">
@@ -92,9 +100,10 @@ export default function Search() {
           </button>
         </form>
       </div>
+
       <div className="flex-1">
         <h1 className="text-3xl font-semibold border-b p-3 text-slate-700 mt-5">
-          Listing results:
+          Event results:
         </h1>
         <div className="p-7 flex flex-wrap gap-4">
           {!loading && events.length === 0 && (

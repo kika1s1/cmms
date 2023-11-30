@@ -1,65 +1,34 @@
-// About.js
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock } from "@fortawesome/free-solid-svg-icons";
 
 const About = () => {
   return (
-    <div className="bg-gray-100 min-h-screen">
-      <div className="container mx-auto py-12">
-        <h1 className="text-4xl font-bold text-center text-indigo-800 mb-6">
-          About Our Competitive Programming Club
-        </h1>
-
-        <div className="max-w-2xl mx-auto text-center mb-8">
-          <p className="text-lg text-gray-700">
-            Welcome to our Competitive Programming Club, where we embark on a
-            journey of mastering algorithms and data structures. At our core, we
-            are a community of passionate problem solvers, dedicated to
-            enhancing our coding skills and participating in exciting coding
-            challenges.
-          </p>
+    <div className="bg-gray-100">
+      <div className="container mx-auto py-8 w-[500px]">
+        <h1 className="text-4xl font-bold text-center mb-4">About CSEC-ASTU</h1>
+        <p className="text-lg text-center text-gray-700 ">
+          Welcome to the about page of CSEC-ASTU! We are a community of computer
+          science enthusiasts at ASTU, dedicated to promoting learning,
+          collaboration, and innovation.
+        </p>
+        <p className="text-lg text-center text-gray-700 mt-4">
+          Our mission is to provide a platform for students to enhance their
+          technical skills, network with industry professionals, and stay
+          updated with the latest trends in the field of computer science.
+        </p>
+        <p className="text-lg text-center text-gray-700 mt-4">
+          Join us on this exciting journey and be a part of the CSEC-ASTU
+          community!
+        </p>
+      </div>
+      <div className="bg-white p-4 shadow-md flex flex-col justify-center items-center">
+        <div>
+          <h2 className="font-bold text-gray-800 text-xl p-2">November 2023</h2>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <h2 className="text-2xl font-bold text-indigo-800 mb-4">
-              Our Mission
-            </h2>
-            <p className="text-gray-700">
-              Our mission is to cultivate a culture of continuous learning and
-              collaboration. We aim to provide a platform where members can
-              sharpen their problem-solving abilities, share knowledge, and
-              inspire each other to excel in the competitive programming
-              landscape.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-2xl font-bold text-indigo-800 mb-4">
-              What We Offer
-            </h2>
-            <p className="text-gray-700">
-              Joining our club opens doors to a world of opportunities. From
-              regular coding challenges and workshops on advanced algorithms to
-              hackathons and participation in coding competitions, we offer a
-              dynamic environment for members to thrive and excel in the field
-              of competitive programming.
-            </p>
-          </div>
+        <div className="flex flex-col p-3">
+          <FontAwesomeIcon icon={faClock} className="text-slate-500 text-5xl" />
+          <p className="text-lg">❤️24/7 coding.❤️ </p>
         </div>
-
-        <div className="max-w-2xl mx-auto text-center mt-8">
-          <h2 className="text-2xl font-bold text-indigo-800 mb-4">
-            Why Join Us?
-          </h2>
-          <p className="text-gray-700">
-            By being a part of our Competitive Programming Club, you gain access
-            to a supportive community of like-minded individuals. Whether you
-            are a seasoned coder or just starting your coding journey, our club
-            provides a space to learn, collaborate, and challenge yourself. Join
-            us, and lets code together towards excellence!
-          </p>
-        </div>
-
-        {/* You can add more sections, features, or links here */}
       </div>
     </div>
   );
