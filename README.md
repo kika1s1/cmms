@@ -1,3 +1,4 @@
+# CSEC DEV CMMS
 ## Project Description
 
 The CSEC DEV Club Member Management System is designed to streamline and enhance the management of club activities and membership. This comprehensive platform offers a variety of features aimed at improving the organization and execution of events, as well as providing robust administrative tools for managing members and events. The system includes the following key features:
