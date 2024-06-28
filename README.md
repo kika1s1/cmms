@@ -1,6 +1,37 @@
-# Club Member Management System
+## Project Description
 
-> Club Member Management System platform built with the MERN stack & Redux.
+The CSEC DEV Club Member Management System is designed to streamline and enhance the management of club activities and membership. This comprehensive platform offers a variety of features aimed at improving the organization and execution of events, as well as providing robust administrative tools for managing members and events. The system includes the following key features:
+
+### User Registration
+Users can create an account within the system by providing their relevant information such as name, email address, and membership details. The registration process includes password creation and validation to ensure secure access.
+
+### Full-Featured Authentication
+Once registered, users can log in using their credentials (email address and password). The system authenticates the user's credentials before granting access to personalized features and information.
+
+### Contact Event Manager
+Users have the ability to contact the event manager directly through the platform for any inquiries or support related to club events. This feature ensures smooth communication and efficient event management.
+
+### Top New Event Carousel
+A dynamic carousel displays the top new events, allowing members to stay updated on upcoming activities. This feature enhances visibility and engagement with club events.
+
+### Create, Edit, and Delete Event
+Event organizers can create new events, edit existing ones, or delete events that are no longer relevant. This flexibility ensures that event information is always current and accurate.
+
+### Event Search Feature
+The system includes a powerful search feature that allows users to find events quickly and easily. Members can search for events based on various criteria, ensuring they can find relevant activities without hassle.
+
+### Admin Event Management
+Administrators have access to advanced event management tools. They can oversee all events, manage event details, and ensure that everything runs smoothly. This feature is crucial for maintaining the quality and organization of club events.
+
+### Admin User Management
+Admin users have the ability to manage member information, including adding new members, updating details, and removing inactive members. This feature ensures that the membership database is always accurate and up-to-date.
+
+### Admin Event Details Page
+A dedicated page for administrators to view detailed information about each event, including participant lists, schedules, and other relevant data. This feature provides admins with a comprehensive overview of each event.
+
+### Profile Edit and Delete
+Users can edit their profile information, including updating contact details and other personal information. Additionally, users can delete their profiles if they choose to leave the club. This feature ensures that user data is always current and manageable.
+
 
 <img src="https://github.com/kika1s1/cmms/blob/main/client/images/screen.png">
 
@@ -8,18 +39,7 @@
 
 <!-- tocstop -->
 
-## Features
 
-- Full featured Authentication
-- Contact Event manager
-- Top New Event carousel
-- Create Event, Edit and Delete Event
-- Event search feature
-
-- Admin Event management
-- Admin user management
-- Admin Event details page
-- profile edit and delete
 
 ## Usage
 
